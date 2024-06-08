@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -13,30 +13,49 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Ribbon from "../Shared/Ribbon";
 
-const MoonProductCard = ({ product, onLike, onAddToCart }) => {
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  rating: number;
+  oldPrice?: number;
+  onSale?: boolean;
+  outOfStock?: boolean;
+  minPurchase?: number;
+}
 
+interface MoonProductCardProps {
+  product: Product;
+  onLike: (id: string) => void;
+  onAddToCart: (id: string) => void;
+}
+
+const MoonProductCard: React.FC<MoonProductCardProps> = ({ product, onLike, onAddToCart }) => {
   return (
     <Card
       sx={{
         position: "relative",
         width: { xs: 190, lg: 250 },
-        height:{xs:310, lg:380},
+        height: { xs: 310, lg: 380 },
         overflow: "hidden",
+        boxShadow: 4,
       }}
     >
-      {product.outOfStock && <Ribbon msg="Agotado" status="danger" />}
+      {product?.outOfStock && <Ribbon msg="Agotado" status="danger" />}
       <CardMedia
         sx={{
-          height:{xs:100, lg:140},
+          height: { xs: 100, lg: 140 },
           width: "100%",
         }}
-        image={product.image}
-        title={product.name}
+        image={product?.image}
+        title={product?.name}
       />
       <CardContent>
         <Typography
           sx={{
-            fontSize:{xs:"1rem", lg:"1.4rem"},
+            fontSize: { xs: "1rem", lg: "1.4rem" },
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
@@ -44,22 +63,21 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
             WebkitBoxOrient: "vertical",
           }}
         >
-          {product.name}
+          {product?.name}
         </Typography>
         <Typography
-          variant="body2"
           color="textSecondary"
-          component="p"
           sx={{
-            height:{xs:"40px", lg:"60px"},
+            height: { xs: "40px", lg: "60px" },
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
-            WebkitLineClamp:{xs:2, lg:3},
+            WebkitLineClamp: { xs: 2, lg: 3 },
             WebkitBoxOrient: "vertical",
+            fontSize:".9rem"
           }}
         >
-          {product.description}
+          {product?.description}
         </Typography>
         <Box
           sx={{
@@ -69,22 +87,20 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
             height: 30,
           }}
         >
-          {product.minPurchase && (
+          {product?.minPurchase && (
             <>
               <InfoOutlinedIcon sx={{ mr: 1, fontSize: "inherit" }} />
               <Typography
-                variant="body2"
-                component="p"
-                sx={{ my: 1, fontWeight: "bold" }}
+                sx={{ my: 1, fontWeight: "bold", fontSize:".9rem" }}
               >
-                Compra mínima: {product.minPurchase}
+                Compra mínima: {product?.minPurchase}
               </Typography>
             </>
           )}
         </Box>
         <Rating
           name="product-rating"
-          value={product.rating}
+          value={product?.rating}
           precision={0.1}
           readOnly
         />
@@ -96,7 +112,7 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
             height: 65,
           }}
         >
-          <Typography variant="body2" component="p">
+          <Typography sx={{fontSize:".9rem"}}>
             CUP
           </Typography>
           <Box
@@ -107,7 +123,6 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
             }}
           >
             <Typography
-              component="p"
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -117,14 +132,14 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
                 fontSize: "1.1rem",
               }}
             >
-              {product.onSale && (
-                <Typography
+              {product?.onSale && (
+                <Typography component="span"
                   sx={{ textDecoration: "line-through", color: "grey" }}
                 >
-                  ${product.oldPrice}
+                  ${product?.oldPrice}
                 </Typography>
               )}
-              ${product.price}
+              ${product?.price}
             </Typography>
             <Box
               sx={{
@@ -135,13 +150,17 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
                 mt: 0,
               }}
             >
-              <IconButton sx={{ p: 0.5, m: 0 }} aria-label="add to favorites" onClick={() => onLike(product.id)}>
+              <IconButton
+                sx={{ p: 0.5, m: 0 }}
+                aria-label="add to favorites"
+                onClick={() => onLike(product?.id)}
+              >
                 <FavoriteBorderIcon sx={{ color: "#ebb14d" }} />
               </IconButton>
               <IconButton
                 sx={{ p: 0.5, m: 0 }}
                 aria-label="add to cart"
-                onClick={() => onAddToCart(product.id)}
+                onClick={() => onAddToCart(product?.id)}
               >
                 <ShoppingCartOutlinedIcon sx={{ color: "#ebb14d" }} />
               </IconButton>
@@ -151,24 +170,6 @@ const MoonProductCard = ({ product, onLike, onAddToCart }) => {
       </CardContent>
     </Card>
   );
-};
-
-MoonProductCard.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    oldPrice: PropTypes.number,
-    onSale: PropTypes.bool,
-    outOfStock: PropTypes.bool,
-    minPurchase: PropTypes.number,
-  }).isRequired,
-//   Utilizacion de funciones enviadas desde el prop para mantener la minima responsabilidad y reutilizacion del componente
-  onLike: PropTypes.func.isRequired,
-  onAddToCart: PropTypes.func.isRequired,
 };
 
 export default MoonProductCard;

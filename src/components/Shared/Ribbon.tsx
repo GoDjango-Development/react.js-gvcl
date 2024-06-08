@@ -1,9 +1,13 @@
 import { Box, Typography } from "@mui/material";
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-const Ribbon = ({ msg, status }) => {
-  const [bgcolor, setBgcolor] = useState("grey");
+interface RibbonProps {
+  msg: string;
+  status: "success" | "danger" | "info";
+}
+
+const Ribbon: React.FC<RibbonProps> = ({ msg, status }) => {
+  const [bgcolor, setBgcolor] = useState<string>("grey");
 
   useEffect(() => {
     const newBgcolor =
@@ -19,23 +23,25 @@ const Ribbon = ({ msg, status }) => {
     <Box
       sx={{
         position: "absolute",
-        top:"30px",
-        left:{xs:"-60px", lg:"-85px"},
+        top: "30px",
+        left: { xs: "-60px", lg: "-85px" },
         width: "100%",
         bgcolor,
         transform: "rotate(-45deg)",
       }}
     >
-      <Typography sx={{ textAlign: "center", color: "white", textTransform:"uppercase", fontSize:{xs:".9rem", lg:"1rem"} }}>
+      <Typography
+        sx={{
+          textAlign: "center",
+          color: "white",
+          textTransform: "uppercase",
+          fontSize: { xs: ".9rem", lg: "1rem" },
+        }}
+      >
         {msg}
       </Typography>
     </Box>
   );
-};
-
-Ribbon.propTypes = {
-  msg: PropTypes.string.isRequired,
-  status: PropTypes.oneOf(["success", "danger", "info"]).isRequired,
 };
 
 export default Ribbon;
