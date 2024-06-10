@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Autoplay } from "swiper/modules";
-import ButtonIcon from "../Shared/ButtonIcon";
+import ButtonIcon from "../Shared/Button/ButtonIcon";
 
 function CustomNavigationButtons() {
   const swiper = useSwiper();
