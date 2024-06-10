@@ -24,8 +24,8 @@ const onAddToCart = (id: string) => {
   console.log(`Added product with id ${id} to cart`);
 };
 
-const MoonProductCardBoard = createBoard({
-  name: 'MoonProductCard',
+export default createBoard({
+  name: "MoonProductCard",
   Board: () => (
     <MoonProductCard
       product={product}
@@ -35,5 +35,3 @@ const MoonProductCardBoard = createBoard({
   ),
   isSnippet: true,
 });
-
-export default MoonProductCardBoard;
