@@ -23,8 +23,8 @@ const Ribbon: React.FC<RibbonProps> = ({ msg, status }) => {
     <Box
       sx={{
         position: "absolute",
-        top: "30px",
-        left: { xs: "-60px", lg: "-85px" },
+        top: { xs:"20px", md:"30px"},
+        left: { xs: "-45px", md:"-60px", lg: "-85px" },
         width: "100%",
         bgcolor,
         transform: "rotate(-45deg)",
@@ -35,7 +35,7 @@ const Ribbon: React.FC<RibbonProps> = ({ msg, status }) => {
           textAlign: "center",
           color: "white",
           textTransform: "uppercase",
-          fontSize: { xs: ".9rem", lg: "1rem" },
+          fontSize: { xs: ".8rem", md:".9rem", lg: "1rem" },
         }}
       >
         {msg}
