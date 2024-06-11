@@ -11,8 +11,8 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Ribbon from "@/components/Shared/Ribbon";
-import { type Product } from "@/types/Product";
+import Ribbon from "../Shared/Ribbon";
+import { type Product } from "../../types/Product";
 
 interface MoonProductCardProps {
   product: Product;

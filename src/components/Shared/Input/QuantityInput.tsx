@@ -1,4 +1,4 @@
-import ButtonPlusLess from "@/components/Shared/Button/ButtonPlusLess";
+import ButtonPlusLess from "../../Shared/Button/ButtonPlusLess";
 import { Box, TextField } from "@mui/material";
 
 interface QuantityInputProps {
