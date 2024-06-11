@@ -1,4 +1,4 @@
-import { type Product } from "@/types/Product";
+import { type Product } from "../../types/Product";
 import {
   Box,
   Card,
@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import QuantityInput from "@/components/Shared/Input/QuantityInput";
+import QuantityInput from "../Shared/Input/QuantityInput";
 
 interface MoonCartItemProps {
   product: Product;

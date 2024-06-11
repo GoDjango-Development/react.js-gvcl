@@ -1,6 +1,6 @@
 import React, { useRef, useCallback } from "react";
 import { Box, CircularProgress, Grid } from "@mui/material";
-import { Product } from "@/types/Product";
+import { Product } from "../../types/Product";
 import MoonProductCard from "./MoonProductCard";
 
 interface MoonProductArrayProps {
