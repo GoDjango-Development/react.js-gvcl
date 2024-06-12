@@ -54,12 +54,12 @@ const MoonCarousel: React.FC<MoonCarouselProps> = ({ images }) => {
       }}
       style={{
         position: "relative",
-        width: "100vw",
+        width: "90vw",
       }}
     >
       {images.map((image, index) => (
         <SwiperSlide key={index}>
-          <Box sx={{height:{xs:"300px", md:"100vh"}}}>
+          <Box sx={{height:{xs:"180px", md:"90vh"}, borderRadius:5, overflow:"hidden"}}>
             <img
               src={image}
               alt={`Slide ${index}`}
